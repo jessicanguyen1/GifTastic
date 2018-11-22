@@ -31,4 +31,13 @@ var addButton = $('.add-button');
 
 addButton.on('click', function () {
     console.log('add button clicked!');
+
+    $('.new-gif').empty
+
+    // When the add button is clicked we want to grab the value of the new-gif input
+    var newGif = $('.new-gif').val();
+
+    // Add the new gif search and append it to a button
+
+    $('.giphy-buttons').append('<button>' + newGif);
 })
