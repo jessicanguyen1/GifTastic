@@ -3,18 +3,9 @@ var API_KEY = 'qmLNsA8nFrXwkZ1du7Y6SIDwklV37AaD';
 
 // Topics array
 var topics = [
-    {
-        search: 'Rhinos',
-        url: 'rhinos.com'
-    },
-    {
-        search: 'Whales',
-        url: 'whales.com'
-    },
-    {
-        search: 'Sharks',
-        url: 'sharks.com'
-    }
+    'rhinos',
+    'whales',
+    'sharks'
 ];
 
 // Loop through each array item and create an button element
@@ -27,17 +18,31 @@ for (var i = 0; i < topics.length; i++) {
 
 var addButton = $('.add-button');
 
+// When the add button is clicked we want to grab the value of the new-gif input
+var newGif = $('.new-gif').val();
+
 // Attach click handler for add button
 
 addButton.on('click', function () {
     console.log('add button clicked!');
 
-    $('.new-gif').empty
-
-    // When the add button is clicked we want to grab the value of the new-gif input
-    var newGif = $('.new-gif').val();
-
     // Add the new gif search and append it to a button
 
     $('.giphy-buttons').append('<button>' + newGif);
 })
+
+function giphyAPI() {
+
+    var newGif = $('.new-gif').val();
+
+    // When the giphyAPI function is called, let's make an AJAX request
+
+    $.ajax({
+        url: 'https://api.giphy.com/v1/gifs/search?q=' + 'dog' + '&api_key=qmLNsA8nFrXwkZ1du7Y6SIDwklV37AaD&limit=5',
+        method: 'GET',
+    }).then(function (response) {
+        console.log(response.data[0].images.fixed_height.url)
+    })
+}
+
+giphyAPI();
